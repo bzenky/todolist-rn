@@ -1,4 +1,6 @@
+import { FlatList } from "react-native"
 import { Trash } from "phosphor-react-native"
+import { TaskProps } from "../../storage/taskDTO"
 import {
   Container,
   TaskItem,
@@ -7,44 +9,31 @@ import {
   TaskButton
 } from "./styles"
 
-export function TaskList() {
+interface TaskListProps {
+  tasks: TaskProps[]
+}
+
+export function TaskList({ tasks }: TaskListProps) {
   return (
     <Container>
-      <TaskItem>
-        <TaskStatus />
+      <FlatList
+        data={tasks}
+        keyExtractor={task => task.id}
+        renderItem={({ item }) => (
+          <TaskItem>
+            <TaskStatus />
 
-        <Description>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita optio cum eum nemo delectus. Itaque, at. Debitis, alias? Nobis alias perspiciatis commodi optio obcaecati harum corrupti possimus laborum? Explicabo, nihil.
-        </Description>
+            <Description>
+              {item.task}
+            </Description>
 
-        <TaskButton>
-          <Trash size={20} color="#808080" />
-        </TaskButton>
-      </TaskItem>
-
-      <TaskItem>
-        <TaskStatus />
-
-        <Description>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita optio cum eum nemo delectus. Itaque, at. Debitis, alias?
-        </Description>
-
-        <TaskButton>
-          <Trash size={20} color="#808080" />
-        </TaskButton>
-      </TaskItem>
-
-      <TaskItem>
-        <TaskStatus />
-
-        <Description>
-          Lorem ipsum dolor sit amet consectetur xpl elit.
-        </Description>
-
-        <TaskButton>
-          <Trash size={20} color="#808080" />
-        </TaskButton>
-      </TaskItem>
+            <TaskButton>
+              <Trash size={20} color="#808080" />
+            </TaskButton>
+          </TaskItem>
+        )}
+        showsVerticalScrollIndicator={false}
+      />
     </Container>
   )
 }

@@ -6,7 +6,7 @@ export async function addNewTask(task: string) {
     const storedTasks = await getAllTasks()
 
     const newTask = {
-      id: new Date().getTime(),
+      id: String(new Date().getTime()),
       task,
       done: false,
       createdAt: new Date()

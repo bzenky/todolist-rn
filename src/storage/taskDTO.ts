@@ -1,5 +1,5 @@
 export interface TaskProps {
-  id: number
+  id: string
   task: string
   done: boolean
   createdAt: Date
