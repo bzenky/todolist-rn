@@ -1,15 +1,25 @@
-import { PlusCircle } from "phosphor-react-native";
-import { useState } from "react";
-import { addNewTask } from "../../storage/addNewTask";
-import { Button, Container, Input } from "./styles";
+import { useState } from "react"
+import { PlusCircle } from "phosphor-react-native"
+import { Alert } from "react-native"
+import { addNewTask } from "../../storage/addNewTask"
+import { Button, Container, Input } from "./styles"
 
-export function TaskAdd() {
+interface TaskAddProps {
+  fetchTasks: () => Promise<void>
+}
+
+export function TaskAdd({ fetchTasks }: TaskAddProps) {
   const [focused, setFocused] = useState(false)
   const [newTask, setNewTask] = useState('')
 
-  function handleAddNewTask(task: string) {
+  async function handleAddNewTask(task: string) {
+    if (!task || task.trim().length === 0) {
+      Alert.alert('Opa!', 'Você precisa digitar uma tarefa para adicionar.')
+    }
+
     addNewTask(task)
     setNewTask('')
+    await fetchTasks()
   }
 
   return (

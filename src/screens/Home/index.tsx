@@ -9,6 +9,8 @@ import { Container, Main } from "./styles"
 
 export function Home() {
     const [tasks, setTasks] = useState<TaskProps[]>([])
+    const taskListLength = tasks.length
+    const taskListDoneLength = tasks.filter(task => task.done).length
 
     async function fetchTasks() {
         const data = await getAllTasks()
@@ -24,9 +26,14 @@ export function Home() {
             <Header />
 
             <Main>
-                <TaskAdd />
+                <TaskAdd
+                    fetchTasks={fetchTasks}
+                />
 
-                <TaskListHeader />
+                <TaskListHeader
+                    taskListLength={taskListLength}
+                    taskListDoneLength={taskListDoneLength}
+                />
 
                 <TaskList tasks={tasks} />
             </Main>

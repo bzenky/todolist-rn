@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import { Alert } from "react-native"
 import { getAllTasks } from "./getAllTasks"
 
 export async function addNewTask(task: string) {
@@ -15,7 +16,8 @@ export async function addNewTask(task: string) {
     const taskAlreadyExists = storedTasks.filter(task => task.task === newTask.task)
 
     if (taskAlreadyExists.length > 0) {
-      throw new Error('Task already exists')
+      Alert.alert('Opa', 'Esta tarefa já existe.')
+      return
     }
 
     const storage = JSON.stringify([...storedTasks, newTask])

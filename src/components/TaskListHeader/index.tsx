@@ -1,6 +1,11 @@
-import { Container, NumberWrapper, Title, TitleNumber, TitleWrapper } from "./styles";
+import { Container, NumberWrapper, Title, TitleNumber, TitleWrapper } from "./styles"
 
-export function TaskListHeader() {
+interface TaskListHeaderProps {
+  taskListLength: number
+  taskListDoneLength: number
+}
+
+export function TaskListHeader({ taskListLength, taskListDoneLength }: TaskListHeaderProps) {
   return (
     <Container>
       <TitleWrapper>
@@ -10,7 +15,7 @@ export function TaskListHeader() {
 
         <NumberWrapper>
           <TitleNumber>
-            0
+            {taskListLength}
           </TitleNumber>
         </NumberWrapper>
       </TitleWrapper>
@@ -22,7 +27,7 @@ export function TaskListHeader() {
 
         <NumberWrapper>
           <TitleNumber>
-            0
+            {taskListDoneLength}
           </TitleNumber>
         </NumberWrapper>
       </TitleWrapper>
