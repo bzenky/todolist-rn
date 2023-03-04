@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import { getAllTasks } from "./GetAllTasks"
+import { getAllTasks } from "./getAllTasks"
 
 export async function addNewTask(task: string) {
   try {

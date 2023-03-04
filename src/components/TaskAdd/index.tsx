@@ -1,6 +1,6 @@
 import { PlusCircle } from "phosphor-react-native";
 import { useState } from "react";
-import { addNewTask } from "../../storage/AddNewTask";
+import { addNewTask } from "../../storage/addNewTask";
 import { Button, Container, Input } from "./styles";
 
 export function TaskAdd() {
