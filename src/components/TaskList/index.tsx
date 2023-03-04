@@ -1,5 +1,11 @@
-import { Trash } from "phosphor-react-native";
-import { Container, TaskItem, TaskStatus, Description, TaskButton } from "./styles";
+import { Trash } from "phosphor-react-native"
+import {
+  Container,
+  TaskItem,
+  TaskStatus,
+  Description,
+  TaskButton
+} from "./styles"
 
 export function TaskList() {
   return (

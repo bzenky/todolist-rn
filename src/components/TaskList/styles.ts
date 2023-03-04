@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  margin-top: 60px;
+  margin-top: 18px;
 `
 
 export const TaskItem = styled.TouchableOpacity`
