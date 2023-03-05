@@ -2,6 +2,7 @@ import { FlatList } from "react-native"
 import { Trash } from "phosphor-react-native"
 import { TaskProps } from "../../storage/taskDTO"
 import { removeTask } from "../../storage/removeTask"
+import { EmptyTaskList } from "../EmptyTaskList"
 import {
   Container,
   TaskItem,
@@ -39,6 +40,7 @@ export function TaskList({ tasks, setTasks }: TaskListProps) {
             </TaskButton>
           </TaskItem>
         )}
+        ListEmptyComponent={<EmptyTaskList />}
         showsVerticalScrollIndicator={false}
       />
     </Container>
