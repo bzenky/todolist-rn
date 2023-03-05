@@ -1,5 +1,9 @@
 import styled from "styled-components/native"
 
+interface TaskStatusProps {
+  done: boolean
+}
+
 export const Container = styled.View`
   margin-top: 18px;
 `
@@ -14,11 +18,15 @@ export const TaskItem = styled.TouchableOpacity`
   border-radius: 8px;
 `
 
-export const TaskStatus = styled.View`
+export const TaskStatus = styled.View<TaskStatusProps>`
+  justify-content: center;
+  align-items: center;
   width: 18px;
   height: 18px;
   border-radius: 10px;
-  border: 2px solid #4EA8DE;
+  border: 2px solid ${({ done }) => done ? '#5E60CE' : '#4EA8DE'};
+  background: ${({ done }) => done ? '#5E60CE' : 'transparent'};
+  transition: all 0.2s ease-in-out;
 `
 
 export const Description = styled.Text`

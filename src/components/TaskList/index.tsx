@@ -1,8 +1,9 @@
 import { FlatList } from "react-native"
-import { Trash } from "phosphor-react-native"
+import { Check, Trash } from "phosphor-react-native"
 import { TaskProps } from "../../storage/taskDTO"
 import { removeTask } from "../../storage/removeTask"
 import { EmptyTaskList } from "../EmptyTaskList"
+import { toggleDoneTask } from "../../storage/toggleDoneTask"
 import {
   Container,
   TaskItem,
@@ -17,6 +18,11 @@ interface TaskListProps {
 }
 
 export function TaskList({ tasks, setTasks }: TaskListProps) {
+  async function handleToggleTaskDone(id: string) {
+    const response = await toggleDoneTask(id)
+    setTasks(response)
+  }
+
   async function handleRemoveTask(id: string) {
     const response = await removeTask(id)
     setTasks(response)
@@ -28,8 +34,10 @@ export function TaskList({ tasks, setTasks }: TaskListProps) {
         data={tasks}
         keyExtractor={task => task.id}
         renderItem={({ item }) => (
-          <TaskItem>
-            <TaskStatus />
+          <TaskItem onPress={() => handleToggleTaskDone(item.id)}>
+            <TaskStatus done={item.done}>
+              {item.done && <Check size={12} color="#fff" weight="bold" />}
+            </TaskStatus>
 
             <Description>
               {item.task}

@@ -29,6 +29,7 @@ export function TaskAdd({ setTasks }: TaskAddProps) {
         placeholder="Adicionar uma nova tarefa"
         placeholderTextColor="#808080"
         onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
         style={focused && { borderColor: '#5E60CE' }}
         onChangeText={setNewTask}
         value={newTask}
