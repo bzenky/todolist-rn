@@ -7,7 +7,7 @@ export const Container = styled.View`
 export const TaskItem = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
-  padding: 12px;
+  padding: 12px 8px 12px 12px;
   margin-bottom: 8px;
   background: #262626;
   border: 1px solid #333333;
@@ -32,6 +32,6 @@ export const Description = styled.Text`
 export const TaskButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 `
