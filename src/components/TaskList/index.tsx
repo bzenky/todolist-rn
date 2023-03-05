@@ -1,6 +1,7 @@
 import { FlatList } from "react-native"
 import { Trash } from "phosphor-react-native"
 import { TaskProps } from "../../storage/taskDTO"
+import { removeTask } from "../../storage/removeTask"
 import {
   Container,
   TaskItem,
@@ -11,9 +12,15 @@ import {
 
 interface TaskListProps {
   tasks: TaskProps[]
+  setTasks: (value: TaskProps[]) => void
 }
 
-export function TaskList({ tasks }: TaskListProps) {
+export function TaskList({ tasks, setTasks }: TaskListProps) {
+  async function handleRemoveTask(id: string) {
+    const response = await removeTask(id)
+    setTasks(response)
+  }
+
   return (
     <Container>
       <FlatList
@@ -27,7 +34,7 @@ export function TaskList({ tasks }: TaskListProps) {
               {item.task}
             </Description>
 
-            <TaskButton>
+            <TaskButton onPress={() => handleRemoveTask(item.id)}>
               <Trash size={20} color="#808080" />
             </TaskButton>
           </TaskItem>

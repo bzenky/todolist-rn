@@ -18,12 +18,12 @@ export async function addNewTask(task: string) {
     if (taskAlreadyExists.length > 0) {
       Alert.alert('Opa', 'Esta tarefa já existe.')
       return
+    } else {
+      const storage = JSON.stringify([...storedTasks, newTask])
+      await AsyncStorage.setItem('@ignite-tasks', storage)
+
+      return [...storedTasks, newTask]
     }
-
-    const storage = JSON.stringify([...storedTasks, newTask])
-
-    await AsyncStorage.setItem('@ignite-tasks', storage)
-
   } catch (error) {
     throw error
   }

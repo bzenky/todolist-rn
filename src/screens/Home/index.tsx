@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Text } from "react-native"
 import { Header } from "../../components/Header"
 import { TaskAdd } from "../../components/TaskAdd"
 import { TaskList } from "../../components/TaskList"
@@ -9,12 +10,16 @@ import { Container, Main } from "./styles"
 
 export function Home() {
     const [tasks, setTasks] = useState<TaskProps[]>([])
+    const [isLoading, setIsLoading] = useState(false)
     const taskListLength = tasks.length
     const taskListDoneLength = tasks.filter(task => task.done).length
 
     async function fetchTasks() {
+        setIsLoading(true)
         const data = await getAllTasks()
         setTasks(data)
+
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -27,7 +32,7 @@ export function Home() {
 
             <Main>
                 <TaskAdd
-                    fetchTasks={fetchTasks}
+                    setTasks={setTasks}
                 />
 
                 <TaskListHeader
@@ -35,7 +40,17 @@ export function Home() {
                     taskListDoneLength={taskListDoneLength}
                 />
 
-                <TaskList tasks={tasks} />
+                {isLoading
+                    ? <Text style={{ color: '#fff' }}>Loading...</Text>
+                    : (
+                        <>
+
+                            <TaskList
+                                tasks={tasks}
+                                setTasks={setTasks}
+                            />
+                        </>
+                    )}
             </Main>
         </Container>
     )
