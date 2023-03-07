@@ -1,4 +1,4 @@
-import styled from "styled-components/native"
+import styled, { css } from "styled-components/native"
 
 interface TaskStatusProps {
   done: boolean
@@ -9,31 +9,38 @@ export const Container = styled.View`
 `
 
 export const TaskItem = styled.TouchableOpacity`
+  ${({ theme }) => css`
+    background: ${theme.COLORS.GRAY_500};
+    border: 1px solid ${theme.COLORS.GRAY_400};
+  `}
   flex-direction: row;
   align-items: center;
   padding: 12px 8px 12px 12px;
   margin-bottom: 8px;
-  background: #262626;
-  border: 1px solid #333333;
   border-radius: 8px;
 `
 
 export const TaskStatus = styled.View<TaskStatusProps>`
+  ${({ theme, done }) => css`
+    border: 2px solid ${done ? theme.COLORS.PURPLE_DARK : theme.COLORS.BLUE};
+    background: ${done ? theme.COLORS.PURPLE_DARK : 'transparent'};
+  `}
   justify-content: center;
   align-items: center;
   width: 18px;
   height: 18px;
   border-radius: 10px;
-  border: 2px solid ${({ done }) => done ? '#5E60CE' : '#4EA8DE'};
-  background: ${({ done }) => done ? '#5E60CE' : 'transparent'};
   transition: all 0.2s ease-in-out;
 `
 
-export const Description = styled.Text`
+export const Description = styled.Text<TaskStatusProps>`
+  ${({ theme, done }) => css`
+    color: ${done ? theme.COLORS.GRAY_300 : theme.COLORS.GRAY_100};
+    font-family: ${theme.FONT_FAMILY.REGULAR};
+    font-size: ${theme.FONT_SIZE.MD}px;
+    text-decoration: ${done ? 'line-through' : 'none'};
+  `}
   flex: 1;
-  color: #F2F2F2;
-  font-size: 14px;
-  font-weight: 400;
   margin: 0 8px;
 `
 

@@ -1,22 +1,26 @@
-import styled from "styled-components/native"
+import styled, { css } from "styled-components/native"
 
 export const Container = styled.View`
   justify-content: center;
   align-items: center;
   border-top-width: 1px;
   border-style: solid;
-  border-top-color: #333333;
+  border-top-color: ${({ theme }) => theme.COLORS.GRAY_400};
   padding-top: 48px;
 `
 
 export const BoldTitle = styled.Text`
+${({ theme }) => css`
+  color: ${theme.COLORS.GRAY_300};
+  font-family: ${theme.FONT_FAMILY.BOLD};
+  font-size: ${theme.FONT_SIZE.MD}px;
+`}
   margin-top: 16px;
-  font-weight: 700;
-  font-size: 14px;
-  color: #808080;
 `
 
 export const Subtitle = styled.Text`
-  font-size: 14px;
-  color: #808080;
-`
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_300};
+    font-family: ${theme.FONT_FAMILY.REGULAR};
+    font-size: ${theme.FONT_SIZE.MD}px;
+`}`

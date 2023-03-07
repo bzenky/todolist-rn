@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { Alert } from "react-native"
+import { useTheme } from "styled-components/native"
 import { PlusCircle } from "phosphor-react-native"
 import { addNewTask } from "../../storage/addNewTask"
-import { Button, Container, Input } from "./styles"
 import { TaskProps } from "../../storage/taskDTO"
+import { Button, Container, Input } from "./styles"
 
 interface TaskAddProps {
   setTasks: (value: TaskProps[]) => void
@@ -12,6 +13,7 @@ interface TaskAddProps {
 export function TaskAdd({ setTasks }: TaskAddProps) {
   const [focused, setFocused] = useState(false)
   const [newTask, setNewTask] = useState('')
+  const { COLORS } = useTheme()
 
   async function handleAddNewTask(task: string) {
     if (!task || task.trim().length === 0) {
@@ -30,13 +32,13 @@ export function TaskAdd({ setTasks }: TaskAddProps) {
         placeholderTextColor="#808080"
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        style={focused && { borderColor: '#5E60CE' }}
+        style={focused && { borderColor: COLORS.PURPLE_DARK }}
         onChangeText={setNewTask}
         value={newTask}
       />
 
       <Button onPress={() => handleAddNewTask(newTask)}>
-        <PlusCircle size={16} color="#F2F2F2" />
+        <PlusCircle size={16} color={COLORS.GRAY_100} />
       </Button>
     </Container>
   )

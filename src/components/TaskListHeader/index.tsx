@@ -1,4 +1,11 @@
-import { Container, NumberWrapper, Title, TitleNumber, TitleWrapper } from "./styles"
+import { useTheme } from "styled-components/native"
+import {
+  Container,
+  NumberWrapper,
+  Title,
+  TitleNumber,
+  TitleWrapper
+} from "./styles"
 
 interface TaskListHeaderProps {
   taskListLength: number
@@ -6,10 +13,12 @@ interface TaskListHeaderProps {
 }
 
 export function TaskListHeader({ taskListLength, taskListDoneLength }: TaskListHeaderProps) {
+  const { COLORS } = useTheme()
+
   return (
     <Container>
       <TitleWrapper>
-        <Title color="#4EA8DE">
+        <Title color={COLORS.BLUE}>
           Criadas
         </Title>
 
@@ -21,7 +30,7 @@ export function TaskListHeader({ taskListLength, taskListDoneLength }: TaskListH
       </TitleWrapper>
 
       <TitleWrapper>
-        <Title color="#8284FA">
+        <Title color={COLORS.PURPLE}>
           Concluídas
         </Title>
 

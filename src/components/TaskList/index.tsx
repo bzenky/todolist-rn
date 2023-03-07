@@ -11,6 +11,7 @@ import {
   Description,
   TaskButton
 } from "./styles"
+import { useTheme } from "styled-components/native"
 
 interface TaskListProps {
   tasks: TaskProps[]
@@ -18,6 +19,8 @@ interface TaskListProps {
 }
 
 export function TaskList({ tasks, setTasks }: TaskListProps) {
+  const { COLORS } = useTheme()
+
   async function handleToggleTaskDone(id: string) {
     const response = await toggleDoneTask(id)
     setTasks(response)
@@ -36,15 +39,17 @@ export function TaskList({ tasks, setTasks }: TaskListProps) {
         renderItem={({ item }) => (
           <TaskItem onPress={() => handleToggleTaskDone(item.id)}>
             <TaskStatus done={item.done}>
-              {item.done && <Check size={12} color="#fff" weight="bold" />}
+              {item.done &&
+                <Check size={12} color={COLORS.WHITE} weight="bold" />
+              }
             </TaskStatus>
 
-            <Description>
+            <Description done={item.done}>
               {item.task}
             </Description>
 
             <TaskButton onPress={() => handleRemoveTask(item.id)}>
-              <Trash size={20} color="#808080" />
+              <Trash size={20} color={COLORS.GRAY_300} />
             </TaskButton>
           </TaskItem>
         )}

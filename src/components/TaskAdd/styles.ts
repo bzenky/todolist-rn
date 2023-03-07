@@ -1,4 +1,4 @@
-import styled from "styled-components/native"
+import styled, { css } from "styled-components/native"
 
 export const Container = styled.View`
   flex-direction: row;
@@ -7,22 +7,28 @@ export const Container = styled.View`
 `
 
 export const Input = styled.TextInput`
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_100};
+    font-family: ${theme.FONT_FAMILY.REGULAR};
+    font-size: ${theme.FONT_SIZE.MD}px;
+    background: ${theme.COLORS.GRAY_500};
+    border: 1px solid ${theme.COLORS.GRAY_700};
+  `}
   flex: 1;
   margin-right: 4px;
   height: 54px;
-  background: #262626;
-  color: #F2F2F2;
   padding: 16px;
   border-radius: 6px;
-  border: 1px solid #0D0D0D;
 `
 
 export const Button = styled.TouchableOpacity`
+  ${({ theme }) => css`
+    background: ${theme.COLORS.BLUE_DARK};
+    border: 1px solid ${theme.COLORS.BLUE_DARK}; 
+  `}
   justify-content: center;
   align-items: center;
   width: 52px;
   height: 54px;
-  background: #1E6F9F;
   border-radius: 6px;
-  border: 1px solid #1E6F9F;
 `

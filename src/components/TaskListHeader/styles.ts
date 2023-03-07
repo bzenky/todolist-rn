@@ -1,4 +1,4 @@
-import styled from "styled-components/native"
+import styled, { css } from "styled-components/native"
 
 interface TextProps {
   color?: string
@@ -17,10 +17,12 @@ export const TitleWrapper = styled.View`
   justify-content: center;
 `
 
-export const Title = styled.Text<TextProps>`  
-  font-size: 14px;
-  font-weight: 700;
-  color: ${({ color }) => color ? color : '#D9D9D9'};
+export const Title = styled.Text<TextProps>`
+  ${({ theme, color }) => css`
+    color: ${color ? color : theme.COLORS.GRAY_300};
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    font-size: ${theme.FONT_SIZE.MD}px;
+  `}
 `
 
 export const NumberWrapper = styled.View`
@@ -28,12 +30,14 @@ export const NumberWrapper = styled.View`
   align-items: center;
   margin-left: 8px;
   padding: 2px 8px;
-  background: #333333;
+  background: ${({ theme }) => theme.COLORS.GRAY_400};
   border-radius: 999999px;  
 `
 
 export const TitleNumber = styled.Text`
-  color: #D9D9D9;
-  font-weight: 700;
-  font-size: 12px;
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_200};
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    font-size: ${theme.FONT_SIZE.SM}px;
+  `}
 `
